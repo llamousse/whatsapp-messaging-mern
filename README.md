@@ -1,7 +1,7 @@
-WhatsApp Messaging Chat
+### WhatsApp Messaging Chat App
 
 ## Technologies
-### MERN
+### MERN Stack
 
 ## Available Scripts
 ### `yarn start`
