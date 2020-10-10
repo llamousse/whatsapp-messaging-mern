@@ -5,6 +5,12 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <h1>I am sidebar</h1>
+      <div className="sidebarHeader">
+          
+          <div className="sidebarHeaderRight">
+
+          </div>
+      </div>
     </div>
   );
 }
