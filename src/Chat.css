@@ -1,5 +1,26 @@
 .chat {
-    display: flex;
-    flex-direction: column;
-    flex: 0.65;
+  display: flex;
+  flex-direction: column;
+  flex: 0.65;
+}
+
+.chatHeader {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.chatHeaderInfo {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.chatHeaderInfo > h3 {
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+.chatHeaderInfo > p {
+    color: gray;
 }
