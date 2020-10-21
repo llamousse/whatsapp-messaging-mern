@@ -9,7 +9,7 @@ import MicIcon from "@material-ui/icons/Mic";
 import React from "react";
 import "./Chat.css";
 
-function Chat() {
+function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chatHeader">
@@ -34,7 +34,15 @@ function Chat() {
       </div>
 
       <div className="chatBody">
-        <p className="chatMessage">
+        {messages.map((message) => (
+          <p className={`chatMessage ${message.received && "chatReceiver"}`}>
+            <span className="chatName">{message.name}</span>
+            {message.message}
+            <span className="chatTimestamp">{message.timestamp}</span>
+          </p>
+        ))}
+
+        {/* <p className="chatMessage">
           <span className="chatName">Vicky</span>
           This is a message
           <span className="chatTimestamp">{new Date().toUTCString()}</span>
@@ -44,7 +52,7 @@ function Chat() {
           <span className="chatName">Vicky</span>
           This is a message
           <span className="chatTimestamp">{new Date().toUTCString()}</span>
-        </p>
+        </p> */}
       </div>
 
       <div className="chatFooter">
