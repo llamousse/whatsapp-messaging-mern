@@ -19,6 +19,13 @@ const pusher = new Pusher({
 // middleware
 app.use(express.json());
 
+app.use((req, res, next) => {
+  // allow CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
+});
+
 // DB config
 const connection_url =
   "mongodb+srv://admin:OEWCMPeCQNevAX5w@cluster0.qyahb.mongodb.net/whatsappdb?retryWrites=true&w=majority";
