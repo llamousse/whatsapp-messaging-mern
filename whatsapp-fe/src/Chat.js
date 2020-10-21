@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Avatar, IconButton } from "@material-ui/core";
 import {
   AttachFile,
@@ -12,6 +12,11 @@ import "./Chat.css";
 
 function Chat({ messages }) {
   const [input, setInput] = useState("");
+  const [seed, setSeed] = useState("");
+
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 5000));
+  }, []);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -29,7 +34,7 @@ function Chat({ messages }) {
   return (
     <div className="chat">
       <div className="chatHeader">
-        <Avatar />
+        <Avatar src={`https://avatars.dicebear.com/api/bottts/${seed}.svg`} />
 
         <div className="chatHeaderInfo">
           <h3>Room name</h3>
