@@ -21,6 +21,7 @@ const pusher = new Pusher({
 app.use(express.json());
 app.use(cors());
 
+// ** replaced with CORS **
 // app.use((req, res, next) => {
 //   // allow CORS headers
 //   res.setHeader("Access-Control-Allow-Origin", "*");
