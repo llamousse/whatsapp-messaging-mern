@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import DonutLargeIcon from "@material-ui/icons/DonutLarge";
 import { Avatar, IconButton } from "@material-ui/core";
@@ -6,12 +6,24 @@ import ChatIcon from "@material-ui/icons/Chat";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { SearchOutlined } from "@material-ui/icons";
 import SidebarChat from "./SidebarChat";
+import { useStateValue } from "./StateProvider";
+import axios from "axios";
 
 function Sidebar() {
+  const [{ user }, dispatch] = useStateValue();
+
+  const [rooms, setRooms] = useState([]);
+  useEffect((async) => {
+    axios.get("/rooms").then((res) => {
+      setRooms(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <div className="sidebar">
       <div className="sidebarHeader">
-        <Avatar src="https://avatars3.githubusercontent.com/u/36034097?s=460&u=32d82e3e9fb24241c650fcb0d2efaa21228424e8&v=4" />
+        <Avatar src={user?.photoURL} />
         <div className="sidebarHeaderRight">
           <IconButton>
             <DonutLargeIcon />
@@ -33,11 +45,12 @@ function Sidebar() {
       </div>
 
       <div className="sidebarChats">
-        {/* <SidebarChat addNewChat /> */}
-        
+        <SidebarChat addNewChat />
         <SidebarChat />
-        <SidebarChat />
-        <SidebarChat />
+{/* 
+        {rooms.map((room) => (
+          <SidebarChat key={room.id} name={room.data.name} />
+        ))} */}
       </div>
     </div>
   );
