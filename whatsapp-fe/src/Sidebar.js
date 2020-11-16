@@ -12,13 +12,50 @@ import axios from "axios";
 function Sidebar() {
   const [{ user }, dispatch] = useStateValue();
 
+  // const [rooms, setRooms] = useState([]);
+  // useEffect((async) => {
+  //   axios.get("/rooms").then((res) => {
+  //     setRooms(res.data);
+  //     console.log(res.data);
+  //   });
+  // }, []);
+
+  // useEffect(async () => {
+  //   await axios
+  //     .get("/rooms")
+  //     .then((res) => {
+  //       setRooms(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+
+  /////
+
   const [rooms, setRooms] = useState([]);
-  useEffect((async) => {
-    axios.get("/rooms").then((res) => {
-      setRooms(res.data);
-      console.log(res.data);
-    });
+
+  useEffect(() => {
+    getConnectedRooms();
   }, []);
+
+  const getConnectedRooms = () => {
+    axios
+      .get("http://localhost:9000/rooms")
+      .then((res) => {
+        setRooms(res.data.data);
+        console.log("Data has been received", res.data.data);
+      })
+      .catch(() => {
+        alert("Data got issues");
+      });
+  };
+
+  console.log("room data: ", rooms);
+
+  /////
 
   return (
     <div className="sidebar">
@@ -46,11 +83,11 @@ function Sidebar() {
 
       <div className="sidebarChats">
         <SidebarChat addNewChat />
-        <SidebarChat />
-{/* 
+        {/* <SidebarChat displayRooms /> */}
+        
         {rooms.map((room) => (
-          <SidebarChat key={room.id} name={room.data.name} />
-        ))} */}
+          <SidebarChat name={room.name} />
+        ))}
       </div>
     </div>
   );

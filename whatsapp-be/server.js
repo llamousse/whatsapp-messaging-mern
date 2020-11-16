@@ -106,7 +106,7 @@ app.post("/rooms/new", (req, res) => {
 });
 
 // GET ROOMS
-app.get("/rooms", (req, res, next) => {
+app.get("/rooms", (req, res) => {
   Rooms.aggregate([
     {
       $lookup: {
@@ -127,14 +127,16 @@ app.get("/rooms", (req, res, next) => {
       });
     }
   });
+});
 
-  // Rooms.find((err, data) => {
-  //   if (err) {
-  //     res.status(500).send(err);
-  //   } else {
-  //     res.status(200).send(data);
-  //   }
-  // });
+app.get("/rooms/all", (req, res) => {
+  Rooms.find((err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
 });
 
 // GET ROOM BY ID
