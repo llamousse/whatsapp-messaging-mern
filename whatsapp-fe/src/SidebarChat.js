@@ -3,7 +3,7 @@ import { Avatar } from "@material-ui/core";
 import "./SidebarChat.css";
 import axios from "axios";
 
-function SidebarChat({ id, name, addNewChat }) {
+function SidebarChat({ name, addNewChat }) {
   const [seed, setSeed] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,6 @@ function SidebarChat({ id, name, addNewChat }) {
   };
 
   /////
-
   // const [rooms, setRooms] = useState([]);
 
   // useEffect(() => {
@@ -51,7 +50,6 @@ function SidebarChat({ id, name, addNewChat }) {
   //   </div>
   //   ));
   // };
-
   /////
 
   return !addNewChat ? (
